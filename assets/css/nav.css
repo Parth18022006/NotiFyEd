@@ -1,0 +1,44 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4f0fa;
+  margin: 0;
+  padding: 0;
+}
+
+.text-purple {
+  color: #6a00ff !important;
+}
+
+.nav-card {
+  background-color: #ffffff;
+  box-shadow: 0 6px 15px rgba(106, 0, 255, 0.1);
+  border-radius: 16px;
+  padding: 1rem 2rem;
+  margin-bottom: 1.5rem;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.nav-card:hover {
+  box-shadow: 0 8px 20px rgba(106, 0, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.navbar-nav .nav-link.text-purple {
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-align: center;
+  color: #6a00ff !important;
+}
+
+.navbar-nav .nav-link.text-purple:hover {
+  color: #5800cc !important;
+  transform: scale(1.05);
+}
+
+.site-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #6a00ff;
+  text-align: center;
+  padding: 1rem 0;
+}
