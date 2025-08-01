@@ -18,8 +18,7 @@ CREATE TABLE `student`(
     Email varchar(255) NOT NULL UNIQUE,
     Class varchar(255) NOT NULL,
     Password varchar(255) NOT NULL,
-    role ENUM('Admin', 'student') NOT NULL DEFAULT 'student',
-    last_login DATETIME DEFAULT NULL
+    role ENUM('Admin', 'student') NOT NULL DEFAULT 'student'
 );
 
 INSERT INTO `user`(`Username`, `Email`, `Password`, `role`) VALUES ('Khushal Rajani','admin@gmail.com','admin12345','Admin');
