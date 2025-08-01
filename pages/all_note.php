@@ -227,41 +227,6 @@ document.getElementById('searchInput').addEventListener('input', function() {
   });
 });
 </script>
-<script>
-function showNoticePopup(message) {
-    const popup = document.createElement("div");
-    popup.innerHTML = message;
-    popup.style.position = "fixed";
-    popup.style.top = "20px";
-    popup.style.right = "20px";
-    popup.style.padding = "16px";
-    popup.style.backgroundColor = "#6a00ff";
-    popup.style.color = "#fff";
-    popup.style.borderRadius = "10px";
-    popup.style.boxShadow = "0 0 10px rgba(0,0,0,0.2)";
-    popup.style.zIndex = "9999";
-    document.body.appendChild(popup);
-
-    setTimeout(() => popup.remove(), 6000);
-}
-
-window.addEventListener("DOMContentLoaded", () => {
-    console.log("Checking for new notices...");
-    fetch("<?= BASE_URL ?>/pages/check_new_notice.php")
-        .then((res) => res.json())
-        .then((data) => {
-            console.log("Notice check result:", data);
-            if (data.success && data.new_count > 0) {
-                let message = `🛎️ You have ${data.new_count} new notice${data.new_count > 1 ? "s" : ""}:<br>`;
-                data.notices.forEach((n) => {
-                    message += `• <b>${n.notice_title}</b> (${n.date})<br>`;
-                });
-                showNoticePopup(message);
-            }
-        })
-        .catch((err) => console.error("Notice fetch error:", err));
-});
-</script>
 
 
 

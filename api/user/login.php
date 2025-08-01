@@ -39,11 +39,6 @@ if($user){
     if($userType == 'student'){
         $_SESSION['class'] = $user['Class']; 
         $_SESSION['name'] = $user['Username'];
-
-        $_SESSION['last_login'] = $user['last_login'];
-
-        $updateLogin = $conn->prepare("UPDATE student SET last_login = NOW() WHERE id = ?");
-        $updateLogin->execute([$user['id']]);
     }
     echo json_encode(['success' => true, 'user' => $user ,'session_after_set' => $_SESSION ]);
     exit;
