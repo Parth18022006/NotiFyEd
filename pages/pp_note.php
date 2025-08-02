@@ -17,6 +17,7 @@ $stmt = $conn->prepare($q2);
 $stmt->execute();
 
 $admin = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$today = date('Y-m-d');
 ?>
   <style>
     body {
@@ -152,7 +153,7 @@ $admin = $stmt->fetchAll(PDO::FETCH_ASSOC);
       
       <div class="mb-3">
         <label class="form-label">Date</label>
-        <input type="date" id="dateInput" name="dateInput" class="form-control"/>
+        <input type="date" id="dateInput" name="dateInput" class="form-control" value="<?= $today ?>" readonly/>
       </div>
 
       
@@ -224,15 +225,27 @@ $admin = $stmt->fetchAll(PDO::FETCH_ASSOC);
     const dateInput = document.getElementById('dateInput');
     const dayInput = document.getElementById('dayInput');
 
-    dateInput.addEventListener('change', function () {
-      const date = new Date(this.value);
-      if (!isNaN(date.getTime())) {
-        const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-        dayInput.value = days[date.getDay()];
-      } else {
-        dayInput.value = '';
-      }
-    });
+  function updateDayFromDate(dateStr) {
+    const date = new Date(dateStr);
+    if (!isNaN(date.getTime())) {
+      const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      dayInput.value = days[date.getDay()];
+    } else {
+      dayInput.value = '';
+    }
+  }
+
+  // Update day on date change
+  dateInput.addEventListener('change', function () {
+    updateDayFromDate(this.value);
+  });
+
+  // Auto-set day on page load
+  document.addEventListener("DOMContentLoaded", function () {
+    if (dateInput.value) {
+      updateDayFromDate(dateInput.value);
+    }
+  });
 
     const cleanURL = window.location.protocol + "//" + window.location.host + window.location.pathname;
     
