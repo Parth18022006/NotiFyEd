@@ -9,6 +9,7 @@ $stmt = $conn->prepare($q);
 $stmt->execute();
 
 $admin = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$today = date('Y-m-d');
 
 ?>
 
@@ -153,7 +154,7 @@ $admin = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <div class="mb-3">
           <label for="publishDate" class="form-label">Schedule Publish Date</label>
-          <input type="date" class="form-control" id="publishDate" name="publishDate">
+          <input type="date" class="form-control" id="publishDate" name="publishDate" value="<?= $today ?>" readonly>
         </div>
         <small id="emsg" style="color: red;" class="text-danger d-block text-center w-100"></small>
         <button type="button" class="btn btn-purple" onclick="Post()">Post Notice</button>
@@ -165,19 +166,28 @@ $admin = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      const publishDate = document.getElementById("publishDate");
-      const noticeDay = document.getElementById("noticeDay");
+  const publishDate = document.getElementById("publishDate");
+  const noticeDay = document.getElementById("noticeDay");
 
-      publishDate.addEventListener("change", function() {
-        const date = new Date(this.value);
-        const options = {
-          weekday: 'long'
-        };
-        if (!isNaN(date)) {
-          noticeDay.value = date.toLocaleDateString('en-US', options);
-        }
-      });
-    });
+  // Set the day initially if date is pre-filled
+  if (publishDate.value) {
+    const date = new Date(publishDate.value);
+    const options = { weekday: 'long' };
+    if (!isNaN(date)) {
+      noticeDay.value = date.toLocaleDateString('en-US', options);
+    }
+  }
+
+  // Handle date change (if user can change)
+  publishDate.addEventListener("change", function() {
+    const date = new Date(this.value);
+    const options = { weekday: 'long' };
+    if (!isNaN(date)) {
+      noticeDay.value = date.toLocaleDateString('en-US', options);
+    }
+  });
+});
+
 
     function Post() {
 
