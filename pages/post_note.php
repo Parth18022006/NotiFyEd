@@ -2,14 +2,8 @@
 require_once "../includes/init.php";
 include pathof('./includes/header.php');
 include pathof('./includes/navbar.php');
-
-$q = "SELECT Username FROM `user` WHERE role = 'Admin'";
-
-$stmt = $conn->prepare($q);
-$stmt->execute();
-
-$admin = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $today = date('Y-m-d');
+$name = $_SESSION['Username'];
 
 ?>
 
@@ -115,14 +109,7 @@ $today = date('Y-m-d');
 
         <div class="mb-3">
           <label for="facultyName" class="form-label">Sender (Faculty)</label>
-          <select class="form-select" id="facultyName" name="facultyName">
-            <option value="" disabled selected hidden>Select Faculty</option>
-            <?php foreach ($admin as $a) : ?>
-              <option value="<?= htmlspecialchars($a['Username']); ?>">
-                <?= htmlspecialchars($a['Username']); ?>
-              </option>
-            <?php endforeach; ?>
-          </select>
+          <input type="text" name="facultyName" class="form-control" id="facultyName" readonly value="<?= $name?>">
 
         </div>
 

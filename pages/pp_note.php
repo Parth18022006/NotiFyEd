@@ -16,14 +16,8 @@ $stmt = $conn->prepare($q);
 $stmt->execute();
 
 $fstud = $stmt->fetch(PDO::FETCH_ASSOC);
-
-$q2 = "SELECT Username FROM `user` WHERE role = 'Admin'";
-
-$stmt = $conn->prepare($q2);
-$stmt->execute();
-
-$admin = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $today = date('Y-m-d');
+$name = $_SESSION['Username']
 ?>
   <style>
     body {
@@ -140,14 +134,7 @@ $today = date('Y-m-d');
       
       <div class="mb-3">
         <label class="form-label">Sender Faculty</label>
-        <select name="faculty" class="form-select" id="faculty">
-          <option selected disabled>Select Faculty</option>
-          <?php foreach ($admin as $a) : ?>
-              <option value="<?= htmlspecialchars($a['Username']); ?>">
-                <?= htmlspecialchars($a['Username']); ?>
-              </option>
-            <?php endforeach; ?>
-        </select>
+        <input type="text" name="faculty" id="faculty" readonly class="form-control" value="<?= $name?>">
       </div>
 
       
