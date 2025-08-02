@@ -110,12 +110,18 @@ $username = $_SESSION['Username'];
       <h2 class="card-title mb-3">Welcome, <?= ucfirst($username); ?>!</h2>
       <p class="mb-1"><strong>You are logged in as:</strong> <span class="text-purple"><?= ucfirst($role); ?></span></p>
 
-      <?php if (strtolower($role) === 'admin'): ?>
+      <?php if ($role === 'Super Admin'): ?>
+  <p class="mt-4">
+    ➤ As a <strong>Super Admin</strong>, you have full control over the entire system including user management and content monitoring. <br>
+    ➤ You can post public or personal notices, review feedbacks, and access all administrative tools. <br>
+    ➤ You can add admins and students, helping maintain the platform’s structure and security.
+  </p>
+      <?php elseif ($role === 'Admin'): ?>
         <p class="mt-4">
         ➤ As an <strong>Admin</strong>, you can create, manage and schedule important notices, whether public or personal, for different classes. <br>
         ➤ Use the dashboard to post updates, track published notices, and engage effectively with students. <br>
         ➤ Ensure timely communication using categorized announcements.</p>
-      <?php elseif (strtolower($role) === 'student'): ?>
+      <?php elseif ($role === 'student'): ?>
         <p class="mt-4">
         ➤ As a <strong>Student</strong>, you can view all notices related to your class, Events, Exams, holidays, and personal Notices. <br>
         ➤ This system keeps you updated with important announcements. <br>
