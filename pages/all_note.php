@@ -210,23 +210,39 @@ header,
 
 </body>
 <script>
-document.getElementById('searchInput').addEventListener('input', function() {
-  const query = this.value.toLowerCase().trim();
+document.getElementById('searchInput').addEventListener('input', function () {
+  const rawQuery = this.value.toLowerCase().trim().replaceAll('/', '-');
+
   document.querySelectorAll('.notice-block').forEach(block => {
     const inputs = block.querySelectorAll('input.form-control[readonly]');
     const faculty = inputs[0]?.value.toLowerCase() || "";
     const classText = inputs[1]?.value.toLowerCase() || "";
     const dayText = inputs[2]?.value.toLowerCase() || "";
     const dateText = inputs[3]?.value.toLowerCase() || "";
-    const categoryTarget = block.querySelector('.notice-title')?.textContent.toLowerCase() || "";
+    const description = block.querySelector('textarea')?.value.toLowerCase() || "";
+    const title = block.querySelector('.notice-title')?.textContent.toLowerCase() || "";
 
-    // Combine only the selected fields (no description)
-    const combined = faculty + " " + classText + " " + dayText + " " + dateText + " " + categoryTarget;
+    // Normalize date formats
+    const normalizedDate = dateText.replaceAll('/', '-');
+    const dateParts = normalizedDate.split('-');
+    let reversedDate = "", altDate = "";
+    if (dateParts.length === 3) {
+      reversedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`; // yyyy-mm-dd
+      altDate = `${dateParts[1]}-${dateParts[0]}-${dateParts[2]}`; // mm-dd-yyyy
+    }
 
-    block.style.display = combined.includes(query) ? '' : 'none';
+    // Combine all searchable content into one string
+    const combinedContent = [
+      faculty, classText, dayText, normalizedDate, reversedDate, altDate,
+      description, title
+    ].join(" ").toLowerCase();
+
+    // Check if any part of the content includes the search query
+    block.style.display = combinedContent.includes(rawQuery) ? '' : 'none';
   });
 });
 </script>
+
 
 
 
