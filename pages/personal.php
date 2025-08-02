@@ -172,7 +172,7 @@ header,
     }
 
     function giveNotice(studentid) {
-      window.location.href = "./pp_note.php?id=" +studentid;
+      window.location.href = `./pp_note.php?id=${studentid}`;
     }
   </script>
 

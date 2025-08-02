@@ -3,6 +3,12 @@ require_once "../includes/init.php";
 include pathof('./includes/header.php');
 include pathof('./includes/navbar.php');
 
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+  // Invalid or direct access — redirect
+  header("Location: personal.php");
+  exit;
+}
+
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 $q = "SELECT * FROM `student` WHERE id = $id";
 
