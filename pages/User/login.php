@@ -89,6 +89,53 @@
       text-transform: uppercase;
       margin-bottom: 0.5rem;
     }
+    .show-password {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #6a00ff;
+}
+.input-with-icon {
+  position: relative;
+}
+
+.form-control {
+  border-radius: 50px;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem; /* ensure space for eye icon */
+}
+
+/* Fix the lock/user icon */
+.form-icon {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  color: #6a00ff;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Fix the eye icon */
+.toggle-pass {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: black; /* default color */
+  z-index: 2;
+  transition: color 0.3s ease;
+}
+
+.toggle-pass:hover {
+  color: #6a00ff; /* hover color */
+}
+
+
   </style>
 </head>
 
@@ -108,6 +155,8 @@
     <div class="mb-4 input-with-icon">
       <input type="password" class="form-control" id="Password" name="Password" placeholder="Password" />
       <i class="fa fa-lock form-icon"></i>
+      <i class="fa-solid fa-eye toggle-pass" data-target="Password" aria-hidden="true"></i>
+
     </div>
     <small id="emsg1" style="color: red;" class="text-danger d-block text-center w-100"></small>
 
@@ -182,6 +231,16 @@
 
 
     }
+
+    document.querySelectorAll('.toggle-pass').forEach(icon => {
+            icon.addEventListener('click', () => {
+                const input = document.getElementById(icon.dataset.target);
+                const show = input.type === 'password';
+                input.type = show ? 'text' : 'password';
+                icon.classList.toggle('fa-eye', !show);
+                icon.classList.toggle('fa-eye-slash', show);
+            });
+        });
   </script>
 </body>
 

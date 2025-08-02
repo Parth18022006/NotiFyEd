@@ -204,6 +204,41 @@ body {
     margin-top: 5rem; 
   }
 }
+.input-with-icon {
+  position: relative;
+}
+
+.input-with-icon .form-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6a00ff;
+  font-size: 1.1rem;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.input-with-icon input.form-control {
+  padding-left: 42px;
+  padding-right: 42px; /* Add right padding for eye icon space */
+}
+
+.input-with-icon .toggle-pass {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  color: #000; /* Default color */
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.input-with-icon .toggle-pass:hover {
+  color: #6a00ff; /* Hover color */
+}
+
 
 
 
@@ -250,6 +285,8 @@ body {
         <div class="mb-3 input-with-icon">
             <i class="fa fa-lock form-icon"></i>
             <input type="password" class="form-control" id="Password" name="Password" placeholder="Password" />
+            <i class="fa-solid fa-eye toggle-pass" data-target="Password" aria-hidden="true"></i>
+
         </div>
         <small id="emsg4" style="color: red;" class="text-danger d-block text-center w-100"></small>
 
@@ -257,6 +294,8 @@ body {
         <div class="mb-4 input-with-icon">
             <i class="fa fa-lock form-icon"></i>
             <input type="password" class="form-control" id="CPassword" name="CPassword" placeholder="Confirm Password" />
+            <i class="fa-solid fa-eye toggle-pass" data-target="CPassword" aria-hidden="true"></i>
+
         </div>
         <small id="emsg5" style="color: red;" class="text-danger d-block text-center w-100"></small>
         <small id="emsg1" style="color: red;" class="text-danger d-block text-center w-100"></small><br>
@@ -337,6 +376,16 @@ body {
                 return false;
             }
         }
+
+        document.querySelectorAll('.toggle-pass').forEach(icon => {
+            icon.addEventListener('click', () => {
+                const input = document.getElementById(icon.dataset.target);
+                const show = input.type === 'password';
+                input.type = show ? 'text' : 'password';
+                icon.classList.toggle('fa-eye', !show);
+                icon.classList.toggle('fa-eye-slash', show);
+            });
+        });
     </script>
 
 </body>
