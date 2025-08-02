@@ -192,7 +192,7 @@ header,
           </div>
           <div class="col-md-6">
             <label class="form-label">Published On</label>
-            <input type="text" class="form-control" value="<?= $n['date'] ?>" readonly>
+            <input type="text" class="form-control" value="<?= date('d-m-Y', strtotime($n['date'])) ?>" readonly>
           </div>
           <div class="col-12">
             <label class="form-label">Notice Description</label>

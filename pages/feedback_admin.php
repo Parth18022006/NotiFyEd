@@ -174,6 +174,10 @@ h2 {
     <p class="text-center mt-3" style="font-size: 0.85rem; color: #888;">Powered by <span style="color: #6a00ff; font-weight: 600;">NotiFyEd</span></p>
 
     <script>
+       function formatDate(dateStr) {
+        const [year, month, day] = dateStr.split("-");
+        return `${day}-${month}-${year}`;
+    }
         displayfb();
 
         function displayfb() {
@@ -193,7 +197,7 @@ h2 {
                                 <td>${response.feedbacks[i].category}</td>
                                 <td>${response.feedbacks[i].description}</td>
                                 <td>${response.feedbacks[i].submitted_by}</td>
-                                <td>${response.feedbacks[i].submit_date}</td>
+                                <td>${formatDate(response.feedbacks[i].submit_date)}</td>
                             </tr>
                             `
                         }
