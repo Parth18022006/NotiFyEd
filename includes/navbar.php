@@ -1,7 +1,12 @@
 <?php
-if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'){
+$role = $_SESSION['role'];
+if($role == 'Admin'){
   ?><div class="text-center py-3" style="font-size: 1.8rem; font-weight: 700; color: #6a00ff;">
   NotiFyEd Admin
+</div><?php
+}elseif($role == 'Super Admin'){
+  ?><div class="text-center py-3" style="font-size: 1.8rem; font-weight: 700; color: #6a00ff;">
+  NotiFyEd Super Admin
 </div><?php
 }else{
   ?><div class="text-center py-3" style="font-size: 1.8rem; font-weight: 700; color: #6a00ff;">
@@ -19,7 +24,7 @@ if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'){
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav justify-content-around w-100">
             <?php
-            if($_SESSION['role'] == 'admin'){
+            if($role == 'Admin' || $role == 'Super Admin'){
               ?><li class="nav-item">
               <a class="nav-link text-purple" href="<?= urlof('./pages/post_note.php')?>">Post Notice</a>
             </li><?php
@@ -33,7 +38,7 @@ if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'){
               <a class="nav-link text-purple" href="<?= urlof('./index.php')?>">Dashboard</a>
             </li>
             <?php
-            if($_SESSION['role'] == 'admin'){
+            if($role == 'Admin' || $role == 'Super Admin'){
               ?><li class="nav-item">
               <a class="nav-link text-purple" href="<?= urlof('./pages/personal.php')?>">Personal Notice</a>
             </li><?php
@@ -41,26 +46,32 @@ if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'){
             ?>
             
             <?php
-            if($_SESSION['role'] == 'student'){
+            if($role == 'student'){
               ?><li class="nav-item">
               <a class="nav-link text-purple" href="<?= urlof('./pages/feedback.php');?>">Feedback</a>
             </li><?php
-            }else{ ?>
-            <li class="nav-item">
+            }?>
+            <?php
+            if($role == 'Admin' || $role == 'Super Admin'){
+              ?>
+              <li class="nav-item">
               <a class="nav-link text-purple" href="<?= urlof('./pages/feedback_admin.php');?>">Feedbacks</a>
             </li>
-            <li class="nav-item">
+              <?php
+            }
+            ?>
+            <?php
+            if($role == 'Super Admin'){
+              ?>
+              <li class="nav-item">
               <a class="nav-link text-purple" href="<?= urlof('./pages/Student/register.php');?>">Add Student</a>
             </li>
             <li class="nav-item">
               <a class="nav-link text-purple" href="<?= urlof('./pages/User/register.php');?>">Add Admin</a>
             </li>
-
-            <?php
-
+              <?php
             }
             ?>
-            
             <li class="nav-item">
               <a class="nav-link text-purple" href="<?= urlof('./api/user/logout.php');?>" onclick="return confirm('Sure! You Want To Logout.');">Logout</a>
             </li>
