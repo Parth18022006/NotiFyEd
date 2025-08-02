@@ -9,7 +9,7 @@ CREATE TABLE `User`(
     Username varchar(255) NOT NULL,
     Email varchar(255) NOT NULL UNIQUE,
     Password varchar(255) NOT NULL,
-    role ENUM('Admin', 'student') NOT NULL DEFAULT 'Admin'
+    role ENUM('Admin','Super Admin', 'student') NOT NULL DEFAULT 'Admin'
 );
 
 CREATE TABLE `student`(
@@ -18,10 +18,10 @@ CREATE TABLE `student`(
     Email varchar(255) NOT NULL UNIQUE,
     Class varchar(255) NOT NULL,
     Password varchar(255) NOT NULL,
-    role ENUM('Admin', 'student') NOT NULL DEFAULT 'student'
+    role ENUM('Admin','Super Admin', 'student') NOT NULL DEFAULT 'student'
 );
 
-INSERT INTO `user`(`Username`, `Email`, `Password`, `role`) VALUES ('Khushal Rajani','admin@gmail.com','admin12345','Admin');
+INSERT INTO `user`(`Username`, `Email`, `Password`, `role`) VALUES ('Khushal Rajani','admin@gmail.com','admin12345','Super Admin');
 
 CREATE TABLE `issue_notice`(
     id int AUTO_INCREMENT PRIMARY KEY,
