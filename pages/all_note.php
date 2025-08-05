@@ -29,7 +29,7 @@ if ($role == 'student') {
   ORDER BY publishDate DESC";
 
   $stmt1 = $conn->prepare($q);
-  $stmt1->execute([$user_class , $class_prefix]);
+  $stmt1->execute([$user_class, $class_prefix]);
   $general = $stmt1->fetchAll(PDO::FETCH_ASSOC);
 
   $q2 = "SELECT
@@ -55,11 +55,11 @@ if ($role == 'student') {
   noticeDay AS day, 
   publishDate AS date
   FROM issue_notice ORDER BY publishDate DESC";
-$stmt1 = $conn->prepare($q);
-$stmt1->execute();
-$general = $stmt1->fetchAll(PDO::FETCH_ASSOC);
+  $stmt1 = $conn->prepare($q);
+  $stmt1->execute();
+  $general = $stmt1->fetchAll(PDO::FETCH_ASSOC);
 
-$q2 = "SELECT
+  $q2 = "SELECT
               notice_title,
               category,
               faculty,
@@ -69,35 +69,36 @@ $q2 = "SELECT
               dateInput AS date
            FROM issue_personal_notice
            ORDER BY dateInput DESC";
-    $stmt2 = $conn->prepare($q2);
-    $stmt2->execute();
-    $personal = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+  $stmt2 = $conn->prepare($q2);
+  $stmt2->execute();
+  $personal = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 }
 
 $notices = array_merge($general, $personal);
 
-usort($notices, function($a, $b) {
+usort($notices, function ($a, $b) {
   return strtotime($b['date']) - strtotime($a['date']);
 });
 ?>
 
 <style>
-header,
-.site-name {
-  margin-top: 0 !important;
-  padding-top: 0.8rem; 
-  padding-bottom: 0.8rem;
-}
+  header,
+  .site-name {
+    margin-top: 0 !important;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+  }
 
-.nav-card {
-  margin-top: 0 !important;   
-}
+  .nav-card {
+    margin-top: 0 !important;
+  }
+
   body {
     font-family: 'Poppins', sans-serif;
     background-color: #f4f0fa;
     padding: 2rem;
     padding-top: 0 !important;
-  margin-top: 0 !important
+    margin-top: 0 !important
   }
 
   .text-purple {
@@ -145,11 +146,12 @@ header,
     padding: 0.5rem 1rem;
     color: #333;
   }
+
   .form-control:focus,
-.form-select:focus {
-  border-color: #6a00ff;
-  box-shadow: 0 0 8px rgba(106, 0, 255, 0.4);
-}
+  .form-select:focus {
+    border-color: #6a00ff;
+    box-shadow: 0 0 8px rgba(106, 0, 255, 0.4);
+  }
 
 
   textarea.form-control {
@@ -161,6 +163,12 @@ header,
       font-size: 1.1rem;
     }
   }
+  #searchInput:focus {
+  border-color: #6a00ff !important;
+  box-shadow: 0 0 8px rgba(106, 0, 255, 0.4);
+  outline: none;
+}
+
 </style>
 </head>
 
@@ -170,14 +178,8 @@ header,
     <h2 class="text-purple mb-4">All Notices</h2>
 
     <div class="mb-4">
-  <input 
-    type="text" 
-    id="searchInput" 
-    class="form-control" 
-    placeholder="Search notices..."
-    style="border-radius: 12px; padding: 0.75rem 1rem; border: 1px solid #ccc;"
-  >
-</div>
+      <input type="text" id="searchInput" class="form-control" placeholder="Search notices..." style="border-radius: 12px; padding: 0.75rem 1rem; border: 1px solid #ccc;">
+    </div>
     <?php
     foreach ($notices as $n) :
     ?>
@@ -216,37 +218,38 @@ header,
 
 </body>
 <script>
-document.getElementById('searchInput').addEventListener('input', function () {
-  const rawQuery = this.value.toLowerCase().trim().replaceAll('/', '-');
+  document.getElementById('searchInput').addEventListener('input', function() {
+    const rawQuery = this.value.toLowerCase().trim().replaceAll('/', '-');
 
-  document.querySelectorAll('.notice-block').forEach(block => {
-    const inputs = block.querySelectorAll('input.form-control[readonly]');
-    const faculty = inputs[0]?.value.toLowerCase() || "";
-    const classText = inputs[1]?.value.toLowerCase() || "";
-    const dayText = inputs[2]?.value.toLowerCase() || "";
-    const dateText = inputs[3]?.value.toLowerCase() || "";
-    const description = block.querySelector('textarea')?.value.toLowerCase() || "";
-    const title = block.querySelector('.notice-title')?.textContent.toLowerCase() || "";
+    document.querySelectorAll('.notice-block').forEach(block => {
+      const inputs = block.querySelectorAll('input.form-control[readonly]');
+      const faculty = inputs[0]?.value.toLowerCase() || "";
+      const classText = inputs[1]?.value.toLowerCase() || "";
+      const dayText = inputs[2]?.value.toLowerCase() || "";
+      const dateText = inputs[3]?.value.toLowerCase() || "";
+      const description = block.querySelector('textarea')?.value.toLowerCase() || "";
+      const title = block.querySelector('.notice-title')?.textContent.toLowerCase() || "";
 
-    // Normalize date formats
-    const normalizedDate = dateText.replaceAll('/', '-');
-    const dateParts = normalizedDate.split('-');
-    let reversedDate = "", altDate = "";
-    if (dateParts.length === 3) {
-      reversedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`; // yyyy-mm-dd
-      altDate = `${dateParts[1]}-${dateParts[0]}-${dateParts[2]}`; // mm-dd-yyyy
-    }
+      // Normalize date formats
+      const normalizedDate = dateText.replaceAll('/', '-');
+      const dateParts = normalizedDate.split('-');
+      let reversedDate = "",
+        altDate = "";
+      if (dateParts.length === 3) {
+        reversedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`; // yyyy-mm-dd
+        altDate = `${dateParts[1]}-${dateParts[0]}-${dateParts[2]}`; // mm-dd-yyyy
+      }
 
-    // Combine all searchable content into one string
-    const combinedContent = [
-      faculty, classText, dayText, normalizedDate, reversedDate, altDate,
-      description, title
-    ].join(" ").toLowerCase();
+      // Combine all searchable content into one string
+      const combinedContent = [
+        faculty, classText, dayText, normalizedDate, reversedDate, altDate,
+        description, title
+      ].join(" ").toLowerCase();
 
-    // Check if any part of the content includes the search query
-    block.style.display = combinedContent.includes(rawQuery) ? '' : 'none';
+      // Check if any part of the content includes the search query
+      block.style.display = combinedContent.includes(rawQuery) ? '' : 'none';
+    });
   });
-});
 </script>
 
 
