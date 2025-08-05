@@ -107,6 +107,12 @@
   padding-right: 2.5rem; /* ensure space for eye icon */
 }
 
+.form-control:focus,
+.form-select:focus {
+  border-color: #6a00ff;
+  box-shadow: 0 0 8px rgba(106, 0, 255, 0.4);
+}
+
 /* Fix the lock/user icon */
 .form-icon {
   position: absolute;

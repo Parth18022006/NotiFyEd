@@ -145,6 +145,12 @@ header,
     padding: 0.5rem 1rem;
     color: #333;
   }
+  .form-control:focus,
+.form-select:focus {
+  border-color: #6a00ff;
+  box-shadow: 0 0 8px rgba(106, 0, 255, 0.4);
+}
+
 
   textarea.form-control {
     resize: none;
