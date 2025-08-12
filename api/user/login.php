@@ -23,6 +23,10 @@ if($user){
     $_SESSION['email'] = $user['Email'];
     $_SESSION['role'] = $user['role'];
     $_SESSION['Username'] = $user['Username'];
+    $_SESSION['type'] = 'Admin';
+    if($_SESSION['role'] == 'Super Admin'){
+        $_SESSION['type2'] = 'Super Admin';
+    }
     echo json_encode(['success' => true, 'user' => $user]);
     exit;
 }
@@ -35,7 +39,7 @@ if($user){
     $_SESSION['Username'] = $user['Username'];
     $_SESSION['class'] = $user['Class'];
     $_SESSION['name'] = $user['Username'];
-
+    $_SESSION['type'] = 'student';
     echo json_encode(['success' => true, 'user' => $user]);
     exit;
 }
