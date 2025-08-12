@@ -3,6 +3,12 @@ require_once "../includes/init.php";
 $name = $_SESSION['name'];
 include pathof('./includes/header.php');
 include pathof('./includes/navbar.php');
+$url = urlof('index.php');
+if($_SESSION['type'] != 'student')
+{
+  header("Location: $url");
+  exit;
+}
 ?>
 <style>
     body {
