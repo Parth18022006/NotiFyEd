@@ -2,7 +2,14 @@
 require_once "../../includes/init.php";
 include pathof('./includes/header.php');
 include pathof('./includes/navbar.php');
-
+$role = $_SESSION['type2'];
+// var_dump($role);
+$url = urlof('index.php');
+if($role != 'Super Admin')
+{
+  header("Location: $url");
+  exit;
+}
 ?>
 <style>
 body {
