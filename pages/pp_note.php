@@ -23,8 +23,24 @@ $name = $_SESSION['Username']
     body {
       font-family: 'Poppins', sans-serif;
       background-color: #f4f0fa;
-      padding: 2rem;
+      margin: 0; /* ensure no default body margin */
+  padding-top: 0 !important;
+  margin-top: 0 !important;
     }
+    .main.container {
+  padding: 2rem;
+}
+
+/* Make footer span full width */
+footer, 
+.site-footer, 
+.footer-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
 
     .form-container {
       background: rgba(255, 255, 255, 0.6);
@@ -163,8 +179,7 @@ $name = $_SESSION['Username']
       </div>
     </form>
   </div>
-
-  <p class="text-center mt-3" style="font-size: 0.85rem; color: #888;">Powered by <span style="color: #6a00ff; font-weight: 600;">NotiFyEd</span></p>
+<br><br>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
   
@@ -246,3 +261,6 @@ $name = $_SESSION['Username']
   </script>
 </body>
 </html>
+<?php
+include pathof('./includes/footer.php');
+?>

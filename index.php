@@ -131,8 +131,9 @@ $username = $_SESSION['Username'];
       <?php endif; ?>
     </div>
   </div>
-
-  <p class="text-center mt-3" style="font-size: 0.85rem; color: #888;">Powered by <span style="color: #6a00ff; font-weight: 600;">NotiFyEd</span></p>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+<?php
+include pathof('./includes/footer.php');
+?>

@@ -24,10 +24,22 @@ header,
   body {
     font-family: 'Poppins', sans-serif;
     background-color: #f4f0fa;
-    padding: 2rem;
+    margin: 0;
     padding-top: 0 !important;
     margin-top: 0 !important;
   }
+  .main.container {
+  padding: 2rem;
+}
+  footer, 
+.site-footer, 
+.footer-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
 
   h2 {
     color: #6a00ff;
@@ -131,9 +143,7 @@ header,
       </table>
     </div>
   </div>
-
-  <p class="text-center mt-3" style="font-size: 0.85rem; color: #888;">Powered by <span style="color: #6a00ff; font-weight: 600;">NotiFyEd</span></p>
-
+  <br>
   <script>
     displayrecord();
 
@@ -187,3 +197,6 @@ header,
 </body>
 
 </html>
+<?php
+include pathof('./includes/footer.php');
+?>

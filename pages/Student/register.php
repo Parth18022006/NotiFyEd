@@ -309,8 +309,6 @@ body {
         <small id="emsg1" style="color: red;" class="text-danger d-block text-center w-100"></small><br>
 
         <input type="button" class="btn btn-purple" value="Register" onclick="insert()" />
-
-        <p class="text-center mt-3" style="font-size: 0.85rem; color: #888;">Powered by <span style="color: #6a00ff; font-weight: 600;">NotiFyEd</span></p>
     </form>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -397,3 +395,6 @@ body {
     </script>
 
 </body>
+<?php
+include pathof('./includes/footer.php');
+?>

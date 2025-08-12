@@ -177,8 +177,6 @@ h2 {
         </table>
     </div>
 
-    <p class="text-center mt-3" style="font-size: 0.85rem; color: #888;">Powered by <span style="color: #6a00ff; font-weight: 600;">NotiFyEd</span></p>
-
     <script>
        function formatDate(dateStr) {
         const [year, month, day] = dateStr.split("-");
@@ -222,3 +220,6 @@ h2 {
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </body>
+<?php
+include pathof('./includes/footer.php');
+?>

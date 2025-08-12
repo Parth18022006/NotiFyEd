@@ -271,8 +271,6 @@ body {
 
       <input type="button" class="btn btn-purple" value="Register" onclick="insert()" />
 
-      <p class="text-center mt-3" style="font-size: 0.85rem; color: #888;">Powered by <span style="color: #6a00ff; font-weight: 600;">NotiFyEd</span></p>
-
     </form>
 
 
@@ -356,3 +354,6 @@ body {
 </body>
 
 </html>
+<?php
+include pathof('./includes/footer.php');
+?>
