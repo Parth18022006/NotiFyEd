@@ -64,7 +64,13 @@ Start Apache and MySQL services.
 Open your browser and navigate to:
 http://localhost/NotiFyEd/index.php
 
-📜 Usage
+
+
+
+
+
+
+## 📜 Usage
 For Students:
 
 Log in with your class and email credentials.
@@ -91,3 +97,4 @@ This project is licensed under the MIT License — you are free to use, modify, 
 
 👤 Author
 Made by Parth Chavda
+
