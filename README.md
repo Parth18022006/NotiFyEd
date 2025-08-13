@@ -65,36 +65,33 @@ Open your browser and navigate to:
 http://localhost/NotiFyEd/index.php
 
 
+📜 Usage
+🎓 For Students:
+Log in with your class and email credentials
 
+View general and personal notices
 
-
-
-
-## 📜 Usage
-For Students:
-
-Log in with your class and email credentials.
-
-View general and personal notices.
-
-For Admins:
-
-Add, edit, and manage notices.
+🛠️ For Admins:
+Add, edit, and manage notices
 
 Access general announcements for all students.
 
 📁 Included Files & Directories
-index.php → Main homepage and routing logic.
+index.php → Main homepage and routing logic
 
-README.md → Project documentation.
+README.md → Project documentation
 
-includes/DB/DB.sql → Database schema file.
+includes/DB/DB.sql → Database schema file
 
-.git/ → Contains Git metadata and history.
+.git/ → Contains Git metadata and history
+
 
 📄 License
 This project is licensed under the MIT License — you are free to use, modify, and distribute it.
 
 👤 Author
 Made by Parth Chavda
+
+
+
 
