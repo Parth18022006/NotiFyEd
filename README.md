@@ -91,6 +91,9 @@ This project is licensed under the MIT License — you are free to use, modify, 
 
 👤 Author
 Made by Parth Chavda
+Gmail: parth18chavda@gmail.com
+For any feedback or queries, please feel free to reach out via GitHub or Gmail.
+
 
 
 
